@@ -2,7 +2,8 @@ CREATE database IF NOT EXISTS SpotifyClone;
 
 CREATE TABLE SpotifyClone.`plano` (
 	`plan_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `plano` VARCHAR(15) NOT NULL
+    `plano` VARCHAR(15) NOT NULL,
+    `plan_value` DECIMAL(5,2) NOT NULL
 ) ENGINE = innodb;
 
 CREATE TABLE SpotifyClone.`user` (
@@ -56,11 +57,11 @@ CREATE TABLE SpotifyClone.`seguidores` (
     CONSTRAINT PRIMARY KEY (following_id, user_id)
 ) ENGINE = innodb;
 
-INSERT INTO SpotifyClone.plano(plano)
-	VALUES('gratuito'),
-		  ('familiar'),
-          ('universitário'),
-          ('pessoal');
+INSERT INTO SpotifyClone.plano(plano, plan_value)
+	VALUES('gratuito', 0),
+		  ('familiar', 7.99),
+          ('universitário', 5.99),
+          ('pessoal', 6.99);
 
 INSERT INTO SpotifyClone.user(nome, age, plan_id)
 	VALUES('Thati', 23, 1),
@@ -192,7 +193,7 @@ INSERT INTO SpotifyClone.seguidores(user_id, artist_id)
           (6, 1),
           (7, 2),
           (7, 5),
-          (8, 2),
+          (8, 1),
           (8, 5),
           (9, 6),
           (9, 4),
