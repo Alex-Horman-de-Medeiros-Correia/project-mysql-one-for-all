@@ -7,7 +7,7 @@ FROM (
             m.duration,
             u.name
         FROM SpotifyClone.history h
-            INNER JOIN musics m ON h.music_id = m.music_id
+            INNER JOIN songs m ON h.music_id = m.music_id
             INNER JOIN user u ON u.user_id = h.user_id
     ) AS infos
 GROUP BY name

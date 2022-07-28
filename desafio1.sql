@@ -5,10 +5,10 @@ CREATE database IF NOT EXISTS SpotifyClone;
 CREATE TABLE SpotifyClone.`plan` (
 	`plan_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `plan` VARCHAR(15) NOT NULL,
-  `plan_value` DECIMAL(5,2) NOT NULL
+  `valor` DECIMAL(5,2) NOT NULL
 ) ENGINE = innodb;
 
-INSERT INTO SpotifyClone.plan(plan, plan_value)
+INSERT INTO SpotifyClone.plan(plan, valor)
 	VALUES('gratuito', 0),
 		    ('familiar', 7.99),
         ('universitário', 5.99),
@@ -67,7 +67,7 @@ INSERT INTO SpotifyClone.album(name, release_year, artist_id)
         ('No guarantees', 2015, 5),
         ('Apparatus', 2015, 6);
 
-CREATE TABLE SpotifyClone.`musics` (
+CREATE TABLE SpotifyClone.`songs` (
 	`music_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` VARCHAR(60) NOT NULL,
   `album_id` INT NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE SpotifyClone.`musics` (
   FOREIGN KEY (album_id) REFERENCES `album` (album_id)
 );
 
-INSERT INTO SpotifyClone.musics(name, album_id, duration, artist_id)
+INSERT INTO SpotifyClone.songs(name, album_id, duration, artist_id)
 	VALUES('Soul For Us', 1, 200, 1),
 		    ('Reflections Of Magic', 1, 163, 1),
         ('Dance With Her Own', 1, 116, 1),
@@ -126,7 +126,7 @@ CREATE TABLE SpotifyClone.`history` (
   `date` VARCHAR(60) NOT NULL,
   `hour` VARCHAR(60) NOT NULL,
   FOREIGN KEY (user_id) REFERENCES `user` (user_id),
-  FOREIGN KEY (music_id) REFERENCES `musics` (music_id),
+  FOREIGN KEY (music_id) REFERENCES `songs` (music_id),
   CONSTRAINT PRIMARY KEY (history_id, user_id)
 ) ENGINE = innodb;
 
@@ -170,7 +170,7 @@ INSERT INTO SpotifyClone.history(user_id, music_id, date, hour)
         (10, 12, '2017-07-27', '05:24:49'),
         (10, 13, '2017-12-25', '01:03:57');
 
-CREATE TABLE SpotifyClone.`following` (
+CREATE TABLE SpotifyClone.`seguindo` (
 	`following_id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `artist_id` INT NOT NULL,
@@ -179,7 +179,7 @@ CREATE TABLE SpotifyClone.`following` (
   CONSTRAINT PRIMARY KEY (following_id, user_id)
 ) ENGINE = innodb;
 
-INSERT INTO SpotifyClone.following(user_id, artist_id)
+INSERT INTO SpotifyClone.seguindo(user_id, artist_id)
 	VALUES(1, 1),
         (1, 4),
         (1, 3),

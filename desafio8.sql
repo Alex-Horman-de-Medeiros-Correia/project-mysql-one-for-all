@@ -1,5 +1,6 @@
-SELECT art.name artista,
+SELECT ar.name artista,
     alb.name album
-FROM SpotifyClone.artist art
-    INNER JOIN album alb ON alb.artist_id = art.artist_id 
-    AND art.name = 'Walter Phoenix';
+FROM SpotifyClone.artist AS ar
+    INNER JOIN album alb ON alb.artist_id = ar.artist_id 
+    AND ar.name = 'Walter Phoenix';
+    
